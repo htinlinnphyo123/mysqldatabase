@@ -1,0 +1,22 @@
+=>SELECT DATA (How do we retreve and search data???);
+Method 1 = Syntax
+(ALL, ANY,STAR)
+SELECT * FROM tablename;
+
+Mehod 2 = Syntax
+SELECT column1,column2,...
+FROM tablename
+
+
+
+
+_________________________________________________
+Method 1
+server login
+db login
+db choose
+SELECT * FROM persons;
+
+Method 2 
+SELECT personid,firstname,city
+FROM persons;

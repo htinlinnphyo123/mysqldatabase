@@ -1,0 +1,163 @@
+=>Function
+(i)PROCEDURE (stored procedure)
+	(a)IN = Input Parameter
+	(b)OUT = Output Parameter
+	(c)INOUT=Inout Parameter
+
+(ii)FUNCTION
+	(a)Default Function (Build in)
+	(b)User Define Functions
+		 (i)IN=Input Parameters
+
+
+__________________________________________________________________
+
+=>FUNCTION (User Define Function)
+
+SELECT products.name,products.price,checkouts.qty,(products.price * checkouts.qty) AS totalamount
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id;
+
+=Total Amount
+SELECT SUM(products.price * checkouts.qty)
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id;
+
+
+DELIMITER //
+
+	CREATE FUNCTION totalamount_fun()
+	RETURNS DECIMAL
+	DETERMINISTIC
+	BEGIN
+		
+		DECLARE totalamount DECIMAL;
+
+		SELECT SUM(products.price * checkouts.qty)
+		INTO totalamount
+		FROM checkouts
+		LEFT JOIN products
+		ON checkouts.product_id = products.id;
+
+		RETURN totalamount;
+
+	END;//
+
+DELIMITER ;
+
+SELECT totalamount_fun();
+
+=>List all Functions
+SHOW FUNCTION STATUS WHERE DB = "wdf6032";
+
+=>Drop Function
+DROP FUNCTION IF EXISTS totalamount_fun;
+
+_______________________________________
+=>INPUT PATAMETER(single parameter)
+
+=Total Amount by Product ID
+SELECT SUM(products.price * checkouts.qty)
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id
+WHERE products.id=1;
+
+
+SELECT SUM(products.price * checkouts.qty)
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id
+WHERE products.id=1;
+
+
+DELIMITER $$
+
+	CREATE FUNCTION totalamountbyproductid_fun(p_productid INT)
+	RETURNS DECIMAL 
+	DETERMINISTIC
+	BEGIN
+		
+		DECLARE totalamount DECIMAL;
+
+		SELECT SUM(products.price * checkouts.qty)
+		INTO totalamount
+		FROM checkouts
+		LEFT JOIN products
+		ON checkouts.product_id = products.id
+		WHERE products.id=p_productid;
+
+		RETURN totalamount;
+
+	END; $$
+
+DELIMITER ;
+
+SHOW FUNCTION STATUS WHERE DB = "wdf6032";
+
+SELECT totalamountbyproductid_fun(1);
+SELECT totalamountbyproductid_fun(2);
+SELECT totalamountbyproductid_fun(3); //NULL
+
+DROP FUNCTION IF EXISTS totalamountbyproductid_fun;
+
+
+_______________________________________
+=>INPUT PATAMETER(multi parameter)
+
+=Total Amount by Currency
+
+SELECT SUM(products.price * checkouts.qty)
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id
+WHERE products.id=1 AND checkouts.payment="visa";
+
+
+SELECT SUM(products.price * checkouts.qty)
+FROM checkouts
+LEFT JOIN products
+ON checkouts.product_id = products.id
+WHERE products.id=1 AND checkouts.payment="visa";
+
+
+DELIMITER $$
+
+	CREATE FUNCTION totalamountbyproductid_fun(
+	p_productid INT)
+	RETURNS DECIMAL 
+	DETERMINISTIC
+	BEGIN
+		
+		DECLARE totalamount DECIMAL;
+
+		SELECT SUM(products.price * checkouts.qty)
+		INTO totalamount
+		FROM checkouts
+		LEFT JOIN products
+		ON checkouts.product_id = products.id
+		WHERE products.id=p_productid AND checkouts.payment=p_payment;
+
+		RETURN totalamount;
+
+	END; $$
+
+DELIMITER ;
+
+*error
+SELECT totalamountbyproductid_fun();
+SELECT totalamountbyproductid_fun(1);
+
+SHOW FUNCTION STATUS WHERE DB = "wdf6032";
+
+SELECT totalamountbyproductid_fun(1,"visa");
+SELECT totalamountbyproductid_fun(2);
+SELECT totalamountbyproductid_fun(3); //NULL
+
+DROP FUNCTION IF EXISTS totalamountbyproductid_fun;
+
+
+_______________________________________
+

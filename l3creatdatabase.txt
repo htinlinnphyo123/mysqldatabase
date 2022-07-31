@@ -1,0 +1,38 @@
+u=>CHECK DATABASES;
+SHOW DATABASES;
+
+=>CREATE DATABASE
+CREATE DATABASE wdf6032;
+
+=>DELETE DATABASE
+DROP DATABASE wdf6032;
+
+=>CHOOSE DATABASE
+USE wdf6032;
+
+
+=>CHECK CURRENT DATAABASE
+SELECT database();
+
+____________________________________________________
+
+=>Database Name 
+CAN CREATE
+CREATE DATABASE databasename(must be string-small letters, no numberic, no special characters,)
+for eg...
+CREATE DATABASE myapp;
+CREATE DATABASE myapp123;
+CREATE DATABASE book_shop;
+
+can't create
+CREATE DATABASE My App;
+CREATE DATABASE 14563256;
+CREATE DATABASE @#$%^;
+
+____________________________________________________
+
+
+
+
+
+

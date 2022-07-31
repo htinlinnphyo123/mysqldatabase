@@ -1,0 +1,56 @@
+SERVER LOGIN
+
+CMD
+username=ssh kotha@dltmyanmar.com
+password=datalandtechnology
+
+Putty
+host name-dltmyanmar.com
+host name-157.230.240.154
+ssh -open 
+loginas:wdf6032he
+password:datalandtechnology
+
+WINSCP
+host name-dltmyanmar.com
+host name-157.230.240.154
+host name-dltmyanmar.net
+host name-137.184.248.101mys
+
+password:datalandtechnology
+
+
+DATABASE LOGIN
+
+(method 1)
+mysql -uWDF6032 -p datalandtechnology
+
+(method 2)
+mysql -u WDF6032 -p
+exit
+
+=>VERSION CHECK
+(method 1 = in server)
+mysql -V
+(method 2= in mysql)
+help; (shortcut= \h)
+status;(shortcut= \s)
+
+________________________________________________________________________
+
+=>Arithmetic Operators (5types)
+
+Operators				Meaning									Operates on
++(Add)					Addition								Numeric Value
+-(Subtract)				Subtraction								Numeric Value
+*(Multiply)				Muliplication							Numeric Value
+/(Divide)				Division								Numeric Value							
+%(Modulus)				Returns remainder of a division			Numeric Value
+
+
+
+
+
+/
+
+

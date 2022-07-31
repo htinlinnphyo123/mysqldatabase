@@ -1,0 +1,40 @@
+=>Aliasese (nick name) (Easier to read results)
+
+Aliases Syntax
+
+SELECT columnname AS aliasname 
+FROM tablename;
+
+______________________________________________________
+
+
+EXERCISE
+
+SELECT * FROM employees;
+
+SELECT name AS fullname 
+FROM employees;
+
+SELECT employeeid AS fullname
+FROM employees;
+
+SELECT employeeid AS id,name
+FROM employees;
+
+SELECT employeeid AS id,name,age,salary 
+FROM emploees;
+
+SELECT employeeid AS id,name AS fullname,age,salary 
+FROM emploees;
+
+SELECT employeeid AS id,name AS fullname,age,salary AS payamount
+FROM emploees;
+
+SELECT employeeid AS id,name AS 'full name',age,salary AS 'Pay Amount' FROM employees;
+
+SELECT 
+	employeeid AS id,
+	name AS 'full name',
+	age,
+	salary AS 'Pay Amount'
+FROM employees;

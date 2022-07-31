@@ -1,0 +1,9 @@
+=>CHAR LENGTH(Counts Characters in String)
+
+
+Syntax
+
+SELECT CHAR_LENGTH('Hello World');
+
+
+________________________________________________
